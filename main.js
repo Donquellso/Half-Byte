@@ -9,20 +9,60 @@ name: 'Harry Potter',
 author: 'J.K. Rowling',
 pages: 300,
 isRead: true,
+},
+{
+name: 'Wiedźmin',
+author: 'Andrzej Sapkowski',
+pages: 400,
+isRead: false,
+},
+{
+name: 'Hobbit',
+author: 'J.R.R. Tolkien',
+pages: 500,
+isRead: true,
+},
+{
+name: 'W pustyni i w puszczy',
+author: 'Henry Sienkiewicz',
+pages: 200,
+isRead: false,
+},
+{
+name: 'Magiczne drzewo',
+author: 'Andrzej Maleszka',
+pages: 100,
+isRead: true,
 }
-
-
 ];
 let all = document.getElementById('all');
 let header = document.createElement('div');
 header.classList.add('header');
+let panel = document.createElement('div');
+panel.classList.add('panel');
+let username = document.createElement('h2');
+username.textContent = 'Welcome Donquellso';
+let count = document.createElement('div');
+let pagecount = document.createElement('div');
+panel.appendChild(username);
+panel.appendChild(count);
+panel.appendChild(pagecount);
+header.appendChild(panel);
+
 const createtoggle = document.createElement('div');
 createtoggle.classList.add('toggle');
 header.appendChild(createtoggle);
 let content = document.createElement('div');
 content.classList.add('content');
+let footer = document.createElement('div');
+footer.classList.add('footer');
+let footerText = document.createElement('div');
+footerText.textContent = 'Made by Donquellso';
+footer.appendChild(footerText);
+footerText.classList.add('footerText');
 all.appendChild(header);
 all.appendChild(content);
+all.appendChild(footer);
 //modal
 let modal = document.getElementById('modal');
 let confirmbtn = document.getElementById('confirm');
@@ -84,6 +124,14 @@ authorText.textContent = 'By ' + Book.author;
 let pagesText = document.createElement('div');
 pagesText.textContent = Book.pages + ' pages';
 
+let removebtn = document.createElement('img');
+removebtn.classList.add('removebtn');
+removebtn.src = 'images/remove.svg';
+removebtn.addEventListener('click', ()=>{
+library.splice(library.indexOf(Book), 1);
+render();
+});
+
 let readbtn = document.createElement('img');
 readbtn.classList.add('readbtn');
 readbtn.src = Book.isRead ? 'images/confirm.svg' : 'images/cancel.svg';
@@ -94,7 +142,7 @@ readbtn.onclick = function () {
     Book.isRead = !Book.isRead;
     console.log(Book.isRead);
 };
-
+tile.appendChild(removebtn);
 tile.appendChild(readbtn);
 tile.appendChild(title);
 tile.appendChild(authorText);
