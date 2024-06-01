@@ -1,57 +1,50 @@
 window.onload = function () {
     render();
 }
+import library from './library.js';
 ////////////
 //interface
-const library = [
-{
-name: 'Harry Potter',
-author: 'J.K. Rowling',
-pages: 300,
-isRead: true,
-},
-{
-name: 'Wiedźmin',
-author: 'Andrzej Sapkowski',
-pages: 400,
-isRead: false,
-},
-{
-name: 'Hobbit',
-author: 'J.R.R. Tolkien',
-pages: 500,
-isRead: true,
-},
-{
-name: 'W pustyni i w puszczy',
-author: 'Henry Sienkiewicz',
-pages: 200,
-isRead: false,
-},
-{
-name: 'Magiczne drzewo',
-author: 'Andrzej Maleszka',
-pages: 100,
-isRead: true,
-}
-];
+
 let all = document.getElementById('all');
+////////////////////
+//CALY GORNY PASEK
 let header = document.createElement('div');
 header.classList.add('header');
 let panel = document.createElement('div');
 panel.classList.add('panel');
 let username = document.createElement('h2');
 username.textContent = 'Welcome Donquellso';
-let count = document.createElement('div');
+
 let pagecount = document.createElement('div');
+pagecount.classList.add('pagecount');
+let pagecounttext = document.createElement('h3');
+pagecounttext.innerHTML='0';
+let pagecountimg = document.createElement('img');
+pagecountimg.src='images/pagecount.svg';
+pagecountimg.classList.add('pagecountimg');
+pagecount.appendChild(pagecountimg);
+pagecount.appendChild(pagecounttext);
+
+let count = document.createElement('div');
+count.classList.add('bookcount');
+let bookcountimg = document.createElement('img');
+let bookcounttext = document.createElement('h3');
+bookcounttext.innerHTML='0';
+bookcountimg.src='images/bookcount.svg';
+bookcountimg.classList.add('bookcountimg');
+count.appendChild(bookcountimg);
+count.appendChild(bookcounttext);
+
 panel.appendChild(username);
 panel.appendChild(count);
 panel.appendChild(pagecount);
 header.appendChild(panel);
-
 const createtoggle = document.createElement('div');
 createtoggle.classList.add('toggle');
 header.appendChild(createtoggle);
+all.appendChild(header);
+/////////////////////
+//CONTENT + STOPKA
 let content = document.createElement('div');
 content.classList.add('content');
 let footer = document.createElement('div');
@@ -60,9 +53,9 @@ let footerText = document.createElement('div');
 footerText.textContent = 'Made by Donquellso';
 footer.appendChild(footerText);
 footerText.classList.add('footerText');
-all.appendChild(header);
 all.appendChild(content);
 all.appendChild(footer);
+/////////////////////
 //modal
 let modal = document.getElementById('modal');
 let confirmbtn = document.getElementById('confirm');
@@ -83,7 +76,12 @@ pages.value='';
 author.value='';
 errorText.textContent='';
 });
-
+//LICZENIE ILOSCI KSIAZEK I STRON W BIBLIOTECE
+function calculate(){
+let bookcount = library.length;
+let pagecount = library.reduce((sum, count) => sum + count.pages, 0);
+return {bookcount, pagecount};
+};
 
 //////////////////////
 //Dodanie ksiazki confirmem
@@ -156,6 +154,9 @@ function render(){
 content.innerHTML='';
 library.forEach(function(Book){
 addTile(Book);
+bookcounttext.innerHTML=`${calculate().bookcount}`;
+pagecounttext.innerHTML=`${calculate().pagecount}`;
+console.log(calculate().bookcount);
 });
 }
 ///////////
