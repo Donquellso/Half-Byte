@@ -81,10 +81,18 @@ flex-direction: column;
     flex-wrap: wrap;
     gap: 100px;
     margin-top: 80px;
+<<<<<<< HEAD
     background-color: #EEF7FF;
     min-height: 71vh;
     height: auto;
     padding: 100px 30px 90px 30px;
+=======
+    padding: 30px 100px;
+    background-color: #EEF7FF;
+    min-height: 71vh;
+    height: auto;
+    padding-bottom: 60px;
+>>>>>>> 27d4034716d9ece05e64e9b93fd2deaa388d737b
 }
 .footer{
     width: 100%;

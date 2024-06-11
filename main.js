@@ -2,7 +2,10 @@ window.onload = function () {
     render();
 }
 import library from './library.js';
+<<<<<<< HEAD
 import {rating, rate, remove} from './rating.js';
+=======
+>>>>>>> 27d4034716d9ece05e64e9b93fd2deaa388d737b
 ////////////
 //interface
 
@@ -81,7 +84,10 @@ errorText.textContent='';
 function calculate(){
 let bookcount = library.length;
 let pagecount = library.reduce((sum, count) => sum + count.pages, 0);
+<<<<<<< HEAD
 console.log("no");
+=======
+>>>>>>> 27d4034716d9ece05e64e9b93fd2deaa388d737b
 return {bookcount, pagecount};
 };
 
@@ -170,7 +176,14 @@ function render(){
 content.innerHTML='';
 console.log(library);
 library.forEach(function(Book){
+<<<<<<< HEAD
 Books.addTile(Book);
+=======
+addTile(Book);
+bookcounttext.innerHTML=`${calculate().bookcount}`;
+pagecounttext.innerHTML=`${calculate().pagecount}`;
+console.log(calculate().bookcount);
+>>>>>>> 27d4034716d9ece05e64e9b93fd2deaa388d737b
 });
 bookcounttext.innerHTML=`${calculate().bookcount}`;
 pagecounttext.innerHTML=`${calculate().pagecount}`;
