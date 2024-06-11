@@ -81,6 +81,7 @@ errorText.textContent='';
 function calculate(){
 let bookcount = library.length;
 let pagecount = library.reduce((sum, count) => sum + count.pages, 0);
+console.log("no");
 return {bookcount, pagecount};
 };
 
@@ -91,7 +92,7 @@ if (inputName.value === '' || pages.value === '' || author.value === '') {
 errorText.textContent = 'Fill all fields';
 } else{
 e.preventDefault();
-let newBook = new Books(inputName.value, author.value, pages.value);
+let newBook = new Books(inputName.value, author.value, pages.valueAsNumber);
 library.push(newBook);
 modal.style.display='none';
 render();
@@ -150,7 +151,7 @@ rate(Book.rate, items);
 
 items.forEach(function(item, index){
 item.addEventListener('click',function(){
-    rate(index, items);
+  Book.rate = rate(index, items);
 });
 });
 //////////
@@ -167,11 +168,12 @@ content.appendChild(tile);
 //Render
 function render(){
 content.innerHTML='';
+console.log(library);
 library.forEach(function(Book){
 Books.addTile(Book);
+});
 bookcounttext.innerHTML=`${calculate().bookcount}`;
 pagecounttext.innerHTML=`${calculate().pagecount}`;
-});
 }
 ///////////
 

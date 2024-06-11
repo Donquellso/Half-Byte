@@ -12,7 +12,7 @@ function rate(n, items){
         items[i].classList.remove('nstar');
         items[i].classList.add('star');
     }
-    
+    return n;
 }
 function remove(items){
     for(let i=0;i<5;i++){
